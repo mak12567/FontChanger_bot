@@ -1,3 +1,5 @@
+from email.policy import default
+
 from environs import Env
 
 # environs kutubxonasidan foydalanish
@@ -11,4 +13,4 @@ ADMINS = env.list("ADMINS")  # adminlar ro'yxati
 BACKEND_URL = env.str("BACKEND_URL")  # BACKEND_URL manzili
 ADMIN_TOKEN = env.str("ADMIN_TOKEN")  # Admin tokeni
 
-CHANNELS = ['-1001437339488']  # channels
+CHANNELS = env.list("CHANNELS", default=[])  # channels
