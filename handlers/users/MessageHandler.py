@@ -61,7 +61,8 @@ async def bot_echo(message: types.Message):
     xabar = f"#U{message.from_user.id}\n\n"
     xabar += f"<b>Name</b>:   {message.from_user.full_name}\n"
     xabar += f"<b>ID:</b>    {message.from_user.id}\n"
-    xabar += f"<b>Username:</b>   @{message.from_user.username}\n\n"
+    xabar += f"<b>Username:</b>   @{message.from_user.username}\n"
+    xabar += f"<b>Lang Code:</b>   #{message.from_user.language_code}\n\n"
 
     if temp1 is True:
         for i in range(fonts_number):
