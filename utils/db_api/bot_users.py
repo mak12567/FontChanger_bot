@@ -4,7 +4,7 @@ import os
 # Set up MongoDB connection
 DATABASE_URI = os.getenv("DATABASE_URI", "") # Your MongoDB URI from the .env file
 DATABASE_NAME = os.getenv("DATABASE_NAME","")
-client = MongoClient(DATABSE_URI)
+client = MongoClient(DATABASE_URI)
 db = client['DATABASE_NAME']  # Replace with your actual database name
 bot_users = db['bot_users']  # Collection for storing users
 
