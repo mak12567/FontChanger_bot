@@ -10,7 +10,7 @@ env.read_env()
 BOT_TOKEN = env.str("BOT_TOKEN")  # Bot token
 ADMINS = env.list("ADMINS")  # adminlar ro'yxati
 # IP = env.str("ip")  # Hosting ip manzili
-BACKEND_URL = env.str("BACKEND_URL")  # BACKEND_URL manzili
-ADMIN_TOKEN = env.str("ADMIN_TOKEN")  # Admin tokeni
+#BACKEND_URL = env.str("BACKEND_URL")  # BACKEND_URL manzili
+#ADMIN_TOKEN = env.str("ADMIN_TOKEN")  # Admin tokeni
 
 CHANNELS = env.list("CHANNELS", default=[])  # channels
