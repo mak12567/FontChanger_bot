@@ -1,15 +1,15 @@
-import requests
+from pymongo import MongoClient
+import os
 
-from data.config import BACKEND_URL, ADMIN_TOKEN
-
+# Set up MongoDB connection
+DATABASE_URI = os.getenv("DATABASE_URI", "") # Your MongoDB URI from the .env file
+DATABASE_NAME = os.getenv("DATABASE_NAME","")
+client = MongoClient(DATABSE_URI)
+db = client['DATABASE_NAME']  # Replace with your actual database name
+bot_users = db['bot_users']  # Collection for storing users
 
 def create_bot_user(user):
-    url = f"{BACKEND_URL}/bot-users/list/"
-    # head = {'Authorization': f'Token {ADMIN_TOKEN}'}
-    # Add the Authorization header
-    head = {'Authorization': f'Token {ADMIN_TOKEN}'}
-
-    body = {
+    user_data = {
         'telegram_id': user.id,
         'username': user.username,
         'first_name': user.first_name,
@@ -18,7 +18,11 @@ def create_bot_user(user):
     }
 
     try:
-        res = requests.post(url, headers=head, json=body)
-        # print(res.text)
+        # Insert or update user data in MongoDB
+        bot_users.update_one(
+            {'telegram_id': user.id},  # Use telegram_id as unique identifier
+            {'$set': user_data},  # Update user data
+            upsert=True  # Create a new document if it doesn't exist
+        )
     except Exception as e:
         print(e)
